@@ -5,14 +5,11 @@ var mime = require('mime-types');
 if (!fs.existsSync("./Share")){
     fs.mkdirSync("./Share");
 }
-<<<<<<< HEAD
-=======
 function around(x,nth) {
     var mul = Math.pow(10,nth)
     return Math.round(x * mul) / mul;
 }
 
->>>>>>> 547c292 (:D)
 http.createServer(function (request, response) {
     console.log('request started from', request.socket.remoteAddress, "| Requested :", request.url);
     
@@ -84,13 +81,6 @@ http.createServer(function (request, response) {
                 throw er;
             }
             console.log("Indexing files :");
-<<<<<<< HEAD
-            files.forEach(file => {
-                console.log("\t",file);
-                htmlcontent = htmlcontent.concat("<font color=\"FFFFFF\">\> <a href=\"","./",file,"\"> [ Download ] </a>",file,"</font><br>")
-            })
-            htmlcontent = htmlcontent.concat("<br><font color=\"FFFFFF\"> Total files count : [<font color=\"F7EA6F\">",files.length,"</font>]</font></body></html>");
-=======
             var totalsize = 0;
             files.forEach(file => {
                 var status = fs.statSync("./Share/".concat(file));
@@ -101,7 +91,6 @@ http.createServer(function (request, response) {
                 htmlcontent = htmlcontent.concat("<font color=\"FFFFFF\">\> <a href=\"","./",file,"\"> [ Download ] </a>",file,"  \<<font color=\"F7EA6F\">",around(fsizekb,1)," KB</font>\></font><br>")
             })
             htmlcontent = htmlcontent.concat("<br><font color=\"FFFFFF\"> Total files count : [<font color=\"F7EA6F\">",files.length,"</font>]<br>Total files size : [<font color=\"F7EA6F\">",around(totalsize/1024,2)," MB</font>]</font></body></html>");
->>>>>>> 547c292 (:D)
             response.writeHead(200, { 'Content-Type': contentType });
             response.end(htmlcontent, 'utf-8');
         })
@@ -129,4 +118,4 @@ http.createServer(function (request, response) {
     console.log("------------------------------------------------------------");
 
 }).listen(80);
-console.log('Server started, Port = 80');
+console.log('Server started, Port = 80');var http = require('http');
