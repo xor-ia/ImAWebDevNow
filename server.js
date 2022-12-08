@@ -2,10 +2,12 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var mime = require('mime-types');
-
+if (!fs.existsSync("./Share")){
+    fs.mkdirSync("./Share");
+}
 http.createServer(function (request, response) {
     console.log('request started from', request.socket.remoteAddress, "| Requested :", request.url);
-
+    
     var filePath = './Share' + request.url;
     if (filePath == './Share/') {
         filePath = './index.html';
